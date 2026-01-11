@@ -15,6 +15,8 @@ router.register("components", ComponentViewSet, basename="component")
 router.register("suppliers", SupplierViewSet, basename="supplier")
 router.register("issues", IssueViewSet, basename="issue")
 router.register("service-notes", ServiceNoteViewSet, basename="service-note")
+from django.urls import path
+from api.views import HealthView, RootView
 
 urlpatterns = [
     path("", RootView.as_view(), name="api-root"),
