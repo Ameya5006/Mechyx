@@ -96,16 +96,56 @@ docker-compose.yml
 
 ### Backend API
 
+#### Windows (PowerShell)
+
+```powershell
+cd backend
+python -m venv .venv
+.\\.venv\\Scripts\\Activate.ps1
+python -m pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+
+If you see an execution policy error, run:
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+#### Windows (Command Prompt)
+
+```bat
+cd backend
+python -m venv .venv
+.\\.venv\\Scripts\\activate.bat
+python -m pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+
+#### macOS/Linux
+
 ```bash
 cd backend
 python -m venv .venv
 source .venv/bin/activate
+python -m pip install -r requirements.txt
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 ```
 
 The API will be available at `http://localhost:8000/api/` with a health check at `/api/health/`.
+
+#### Create sample data (optional)
+
+```bash
+python manage.py createsuperuser
+python manage.py runserver
+```
+
+Use the admin at `http://localhost:8000/admin/` to create `Suppliers`, `Components`, `Issues`, and `ServiceNotes`.
 
 ### Ingest Service
 
