@@ -155,6 +155,43 @@ go run .
 
 The ingest service listens on `http://localhost:8081/health`.
 
+#### Sample ingest payloads
+
+```bash
+curl -X POST http://localhost:8081/ingest/service-notes \
+  -H "Content-Type: application/json" \
+  -d '{
+    "vin": "1M8GDM9AXKP042788",
+    "issue_title": "ABS warning after highway drive",
+    "symptom_summary": "ABS light after 20 minutes driving",
+    "raw_note": "Customer reports intermittent ABS warning, cleared after restart.",
+    "technician": "Jordan Reyes",
+    "mileage": 48210,
+    "source": "dealer"
+  }'
+
+curl -X POST http://localhost:8081/ingest/defects \
+  -H "Content-Type: application/json" \
+  -d '{
+    "line": "Line 3",
+    "station": "Torque Bay",
+    "component": "Front subframe",
+    "severity": "high",
+    "description": "Torque variance beyond spec",
+    "detected_at": "2024-05-18"
+  }'
+
+curl -X POST http://localhost:8081/ingest/supplier-reports \
+  -H "Content-Type: application/json" \
+  -d '{
+    "supplier_name": "Nova Mobility",
+    "tier": "Tier 1",
+    "region": "NA",
+    "risk_score": 4.2,
+    "summary": "Battery module defect rate rising above 3%"
+  }'
+```
+
 ### Frontend
 
 ```bash
