@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from api.models import Component, Issue, ServiceNote, Supplier
+from api.models import Alert, ChangeLog, Component, Issue, ServiceNote, Supplier
 
 
 @admin.register(Supplier)
@@ -26,3 +26,16 @@ class IssueAdmin(admin.ModelAdmin):
 class ServiceNoteAdmin(admin.ModelAdmin):
     list_display = ("issue", "source", "symptom_summary", "technician", "mileage")
     search_fields = ("symptom_summary", "raw_note", "technician")
+
+
+@admin.register(ChangeLog)
+class ChangeLogAdmin(admin.ModelAdmin):
+    list_display = ("issue", "title", "implemented_at", "owner", "impact_score")
+    search_fields = ("title", "description", "owner")
+
+
+@admin.register(Alert)
+class AlertAdmin(admin.ModelAdmin):
+    list_display = ("issue", "summary", "severity", "signal", "created_at")
+    list_filter = ("severity",)
+    search_fields = ("summary", "signal")

@@ -2,8 +2,10 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from api.models import Component, Issue, ServiceNote, Supplier
+from api.models import Alert, ChangeLog, Component, Issue, ServiceNote, Supplier
 from api.serializers import (
+    AlertSerializer,
+    ChangeLogSerializer,
     ComponentSerializer,
     IssueSerializer,
     ServiceNoteSerializer,
@@ -59,3 +61,13 @@ class IssueViewSet(viewsets.ModelViewSet):
 class ServiceNoteViewSet(viewsets.ModelViewSet):
     queryset = ServiceNote.objects.select_related("issue").order_by("-created_at")
     serializer_class = ServiceNoteSerializer
+
+
+class ChangeLogViewSet(viewsets.ModelViewSet):
+    queryset = ChangeLog.objects.select_related("issue").order_by("-implemented_at")
+    serializer_class = ChangeLogSerializer
+
+
+class AlertViewSet(viewsets.ModelViewSet):
+    queryset = Alert.objects.select_related("issue").order_by("-created_at")
+    serializer_class = AlertSerializer

@@ -58,3 +58,34 @@ class ServiceNote(models.Model):
 
     def __str__(self) -> str:
         return f"{self.issue.title} - {self.symptom_summary}"
+
+
+class ChangeLog(models.Model):
+    issue = models.ForeignKey(Issue, on_delete=models.CASCADE, related_name="changes")
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    implemented_at = models.DateField()
+    owner = models.CharField(max_length=120)
+    impact_score = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f"{self.issue.title} - {self.title}"
+
+
+class Alert(models.Model):
+    SEVERITY_CHOICES = [
+        ("low", "Low"),
+        ("medium", "Medium"),
+        ("high", "High"),
+        ("critical", "Critical"),
+    ]
+
+    issue = models.ForeignKey(Issue, on_delete=models.CASCADE, related_name="alerts")
+    summary = models.CharField(max_length=200)
+    severity = models.CharField(max_length=20, choices=SEVERITY_CHOICES)
+    signal = models.CharField(max_length=120)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f"{self.issue.title} - {self.summary}"

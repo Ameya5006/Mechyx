@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from api.models import Component, Issue, ServiceNote, Supplier
+from api.models import Alert, ChangeLog, Component, Issue, ServiceNote, Supplier
 
 
 class SupplierSerializer(serializers.ModelSerializer):
@@ -63,5 +63,39 @@ class ServiceNoteSerializer(serializers.ModelSerializer):
             "raw_note",
             "technician",
             "mileage",
+            "created_at",
+        ]
+
+
+class ChangeLogSerializer(serializers.ModelSerializer):
+    issue_detail = IssueSerializer(source="issue", read_only=True)
+
+    class Meta:
+        model = ChangeLog
+        fields = [
+            "id",
+            "issue",
+            "issue_detail",
+            "title",
+            "description",
+            "implemented_at",
+            "owner",
+            "impact_score",
+            "created_at",
+        ]
+
+
+class AlertSerializer(serializers.ModelSerializer):
+    issue_detail = IssueSerializer(source="issue", read_only=True)
+
+    class Meta:
+        model = Alert
+        fields = [
+            "id",
+            "issue",
+            "issue_detail",
+            "summary",
+            "severity",
+            "signal",
             "created_at",
         ]
