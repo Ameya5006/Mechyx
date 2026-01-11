@@ -1,0 +1,33 @@
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="tag">Mechyx</span>
+      <h1>Automotive Intelligence</h1>
+    </div>
+    <nav>
+      <a
+        *ngFor="let item of navigation"
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.path === '' }"
+      >
+        {{ item.label }}
+      </a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <header class="content-header">
+      <div>
+        <h2>Closed-loop quality intelligence</h2>
+        <p>
+          Connect design, manufacturing, suppliers, and service data in one
+          system of truth.
+        </p>
+      </div>
+      <div class="status-pill">AI-ready • MVP</div>
+    </header>
+
+    <router-outlet></router-outlet>
+  </main>
+</div>
