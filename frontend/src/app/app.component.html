@@ -1,16 +1,33 @@
-<section class="hero">
-  <span class="tag">Mechyx • Closed-loop automotive intelligence</span>
-  <h1>Connect design, manufacturing, and service data in one system of truth.</h1>
-  <p>
-    Mechyx turns fragmented automotive knowledge into actionable insights. This
-    MVP interface previews the core modules and the AI-driven workflow that will
-    power faster root-cause resolution.
-  </p>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="tag">Mechyx</span>
+      <h1>Automotive Intelligence</h1>
+    </div>
+    <nav>
+      <a
+        *ngFor="let item of navigation"
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.path === '' }"
+      >
+        {{ item.label }}
+      </a>
+    </nav>
+  </aside>
 
-  <div class="grid">
-    <article class="card" *ngFor="let module of modules">
-      <h3>{{ module.title }}</h3>
-      <p>{{ module.description }}</p>
-    </article>
-  </div>
-</section>
+  <main class="content">
+    <header class="content-header">
+      <div>
+        <h2>Closed-loop quality intelligence</h2>
+        <p>
+          Connect design, manufacturing, suppliers, and service data in one
+          system of truth.
+        </p>
+      </div>
+      <div class="status-pill">AI-ready • MVP</div>
+    </header>
+
+    <router-outlet></router-outlet>
+  </main>
+</div>

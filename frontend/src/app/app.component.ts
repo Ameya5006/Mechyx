@@ -1,38 +1,22 @@
 import { NgFor } from "@angular/common";
 import { Component } from "@angular/core";
+import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  modules = [
-    {
-      title: "Issue Atlas",
-      description: "Unified defect map across manufacturing, service, and suppliers.",
-    },
-    {
-      title: "Mechanic Signal Hub",
-      description: "AI summarization and trend detection from service notes.",
-    },
-    {
-      title: "Design Impact Simulator",
-      description: "Connect recurring issues to components and design decisions.",
-    },
-    {
-      title: "Supplier Integrity Dashboard",
-      description: "Risk scoring and anomaly detection for supplier quality.",
-    },
-    {
-      title: "Assembly Guidance Generator",
-      description: "Translate design intent into clear shop-floor steps.",
-    },
-    {
-      title: "Change Feedback Loop",
-      description: "Measure improvement after fixes roll out.",
-    },
+  navigation = [
+    { path: "", label: "Dashboard" },
+    { path: "issue-atlas", label: "Issue Atlas" },
+    { path: "mechanic-signal-hub", label: "Mechanic Signal Hub" },
+    { path: "design-impact", label: "Design Impact Simulator" },
+    { path: "supplier-integrity", label: "Supplier Integrity" },
+    { path: "assembly-guidance", label: "Assembly Guidance" },
+    { path: "change-feedback", label: "Change Feedback Loop" },
   ];
 }
